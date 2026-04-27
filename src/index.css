@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --color-fmb-orange: #f97316;
+  --color-fmb-dark: #0f1115;
+  --color-fmb-card: #1f2229;
+}
+
+body {
+  background-color: var(--color-fmb-dark);
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+}
