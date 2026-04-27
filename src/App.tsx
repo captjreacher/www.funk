@@ -1,234 +1,248 @@
-import { Layers, Link as LinkIcon, BarChart3, ChevronRight, LayoutTemplate } from 'lucide-react';
+import { ArrowRight, BarChart3, Briefcase, ChevronRight, Copy, Eye, FileText, Globe, Lightbulb, Rocket, Users } from 'lucide-react';
+import React from 'react';
 
 function App() {
+  const scrollToPreview = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    document.getElementById('preview')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen bg-background text-zinc-100 font-sans selection:bg-accent/30">
+    <div className="min-h-screen bg-neutral-950 text-neutral-50 font-sans selection:bg-orange-500/30">
       {/* Navigation */}
-      <nav className="container mx-auto px-6 py-6 flex justify-between items-center relative z-10">
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 rounded bg-gradient-to-br from-accent to-orange-400 flex items-center justify-center font-bold text-white shadow-lg shadow-accent/20">
-            F
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center">
+              <span className="font-bold text-white text-xl leading-none tracking-tighter">F</span>
+            </div>
+            <span className="font-bold text-lg tracking-tight">FunkMyBrand</span>
           </div>
-          <span className="font-semibold text-xl tracking-tight">FunkMyBrand</span>
-        </div>
-        <div className="hidden md:flex space-x-6 text-sm font-medium text-zinc-400">
-          <a href="#why" className="hover:text-zinc-100 transition-colors">Why</a>
-          <a href="#features" className="hover:text-zinc-100 transition-colors">Features</a>
-          <a href="#formats" className="hover:text-zinc-100 transition-colors">Formats</a>
-        </div>
-        <div>
-          <a href="https://app.funkmybrand.com" className="text-sm font-medium bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 px-4 py-2 rounded-full transition-all">
+          <a
+            href="https://app.funkmybrand.com"
+            className="text-sm font-medium hover:text-orange-400 transition-colors"
+          >
             Sign in
           </a>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative pt-24 pb-32 overflow-hidden">
-        {/* Abstract background elements */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-accent/20 blur-[120px] rounded-full opacity-50 mix-blend-screen"></div>
-        </div>
-        
-        <div className="container mx-auto px-6 relative z-10 text-center max-w-4xl">
-          <div className="inline-flex items-center px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/50 text-sm font-medium text-zinc-300 mb-8 backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-accent mr-2 animate-pulse"></span>
-            AI-powered brand & CV deployment studio
+      <main>
+        {/* Hero Section */}
+        <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] opacity-20 pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-b from-orange-500/40 to-transparent blur-3xl rounded-full mix-blend-screen" />
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-tight">
-            Your career, <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500">versioned.</span>
-          </h1>
-          
-          <p className="text-lg md:text-xl text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Create, deploy, and track multiple versions of your CV from one focused workspace. 
-            Stop sending static files and start deploying your professional brand.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="https://app.funkmybrand.com" className="w-full sm:w-auto px-8 py-4 rounded-full bg-accent hover:bg-orange-600 text-white font-semibold transition-all shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] flex items-center justify-center group">
-              Start building
-              <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a href="#preview" className="w-full sm:w-auto px-8 py-4 rounded-full bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 font-semibold transition-all flex items-center justify-center">
-              View product preview
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 1: Why this exists */}
-      <section id="why" className="py-24 bg-zinc-950/50 border-y border-zinc-900">
-        <div className="container mx-auto px-6 max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">A PDF CV is static. Your career is not.</h2>
-          <p className="text-xl text-zinc-400 leading-relaxed">
-            Different roles, clients, recruiters, and opportunities need different versions of your story. 
-            We make it effortless to branch your professional narrative while keeping everything organized.
-          </p>
-        </div>
-      </section>
-
-      {/* Section 2: What you can do */}
-      <section id="features" className="py-32 relative">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 hover:bg-zinc-900 transition-colors">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
-                <Layers className="w-6 h-6 text-accent" />
-              </div>
-              <h3 className="text-xl font-bold mb-4">Create CV versions</h3>
-              <p className="text-zinc-400 leading-relaxed">
-                Build focused versions for roles, clients, boards, or advisory work without losing track of your master record.
-              </p>
-            </div>
-            
-            <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 hover:bg-zinc-900 transition-colors">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
-                <LinkIcon className="w-6 h-6 text-accent" />
-              </div>
-              <h3 className="text-xl font-bold mb-4">Deploy as a link</h3>
-              <p className="text-zinc-400 leading-relaxed">
-                Share a polished CV mini-site instead of another attachment. Instantly updateable, universally accessible.
-              </p>
-            </div>
-            
-            <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 hover:bg-zinc-900 transition-colors">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
-                <BarChart3 className="w-6 h-6 text-accent" />
-              </div>
-              <h3 className="text-xl font-bold mb-4">Track engagement</h3>
-              <p className="text-zinc-400 leading-relaxed">
-                Understand which versions are being viewed and where interest is forming with lightweight analytics.
-              </p>
+          <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-white to-neutral-400 bg-clip-text text-transparent">
+              Your career, versioned.
+            </h1>
+            <p className="text-xl md:text-2xl text-neutral-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+              Create, deploy, and track multiple versions of your CV from one focused workspace.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="https://app.funkmybrand.com"
+                className="w-full sm:w-auto px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-full transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
+              >
+                Start building
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href="#preview"
+                onClick={scrollToPreview}
+                className="w-full sm:w-auto px-8 py-4 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-neutral-700 text-white font-medium rounded-full transition-all flex items-center justify-center gap-2"
+              >
+                View product preview
+              </a>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Section 3: Classic + Archetypes */}
-      <section id="formats" className="py-24 bg-zinc-950/50 border-y border-zinc-900">
-        <div className="container mx-auto px-6 max-w-6xl text-center">
-          <div className="mb-16">
-            <LayoutTemplate className="w-10 h-10 text-zinc-500 mx-auto mb-6" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Presentation matters.</h2>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              Start with a classic CV, or choose a more expressive format when the opportunity calls for it.
+        {/* Problem Section */}
+        <section className="py-24 border-y border-neutral-900 bg-neutral-900/20">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <p className="text-2xl md:text-4xl font-medium leading-tight text-neutral-300">
+              A PDF CV is static. <span className="text-white">Your career is not.</span><br className="hidden md:block" />
+              <span className="text-neutral-500 text-xl md:text-3xl mt-4 block">
+                Different roles, clients, and opportunities require different versions of your story.
+              </span>
             </p>
           </div>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            {['Classic CV', 'Operator', 'Strategist', 'Founder', 'Consultant'].map((archetype) => (
-              <div key={archetype} className="px-6 py-3 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 font-medium">
-                {archetype}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Section 4: Product preview */}
-      <section id="preview" className="py-32 relative">
-        <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto rounded-2xl bg-zinc-900 border border-zinc-800 p-2 md:p-4 shadow-2xl shadow-black/50 relative overflow-hidden">
-            {/* UI Header Mock */}
-            <div className="flex items-center space-x-2 px-4 pb-4 border-b border-zinc-800/50">
-              <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
-              <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
-              <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+        {/* Capabilities Section */}
+        <section className="py-24 md:py-32">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="p-8 rounded-3xl border border-neutral-800 bg-neutral-900/50 hover:border-neutral-700 transition-colors">
+                <div className="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center mb-6 border border-orange-500/20">
+                  <Copy className="w-6 h-6 text-orange-400" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Create CV versions</h3>
+                <p className="text-neutral-400 leading-relaxed">
+                  Build focused versions for roles, clients, and opportunities.
+                </p>
+              </div>
+              <div className="p-8 rounded-3xl border border-neutral-800 bg-neutral-900/50 hover:border-neutral-700 transition-colors">
+                <div className="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center mb-6 border border-orange-500/20">
+                  <Globe className="w-6 h-6 text-orange-400" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Deploy as a link</h3>
+                <p className="text-neutral-400 leading-relaxed">
+                  Share a live CV instead of sending attachments.
+                </p>
+              </div>
+              <div className="p-8 rounded-3xl border border-neutral-800 bg-neutral-900/50 hover:border-neutral-700 transition-colors">
+                <div className="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center mb-6 border border-orange-500/20">
+                  <BarChart3 className="w-6 h-6 text-orange-400" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Track engagement</h3>
+                <p className="text-neutral-400 leading-relaxed">
+                  See which versions are being viewed and where interest is building.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Archetypes Section */}
+        <section className="py-24 md:py-32 bg-neutral-900/30 border-t border-neutral-900">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Choose how you want to present yourself</h2>
+              <p className="text-xl text-neutral-400">Start with a classic CV or choose a more expressive format</p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {[
+                { icon: FileText, title: "Classic CV", desc: "The standard format" },
+                { icon: Rocket, title: "Operator", desc: "Execution focused" },
+                { icon: Lightbulb, title: "Strategist", desc: "Vision & planning" },
+                { icon: Briefcase, title: "Founder", desc: "Zero to one" },
+                { icon: Users, title: "Consultant", desc: "Client & advisory" }
+              ].map((archetype, i) => (
+                <div key={i} className="p-6 rounded-2xl border border-neutral-800 bg-neutral-950 hover:border-orange-500/50 hover:bg-neutral-900 transition-all cursor-default group">
+                  <archetype.icon className="w-8 h-8 text-neutral-500 group-hover:text-orange-400 mb-4 transition-colors" />
+                  <h4 className="font-semibold text-lg mb-1">{archetype.title}</h4>
+                  <p className="text-sm text-neutral-500">{archetype.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Product Preview Section */}
+        <section id="preview" className="py-24 md:py-32 scroll-mt-16">
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">One workspace for your professional identity</h2>
             </div>
             
-            <div className="p-4 md:p-8 grid md:grid-cols-3 gap-6">
-              {/* Left sidebar mock */}
-              <div className="hidden md:block col-span-1 space-y-4">
-                <div className="h-8 bg-zinc-800/50 rounded w-3/4 mb-8"></div>
-                <div className="space-y-2">
-                  <div className="h-6 bg-zinc-800/80 rounded w-full border-l-2 border-accent pl-2"></div>
-                  <div className="h-6 bg-zinc-800/30 rounded w-5/6"></div>
-                  <div className="h-6 bg-zinc-800/30 rounded w-4/6"></div>
-                </div>
-              </div>
-              
-              {/* Main content mock */}
-              <div className="col-span-1 md:col-span-2 space-y-6">
-                <div className="flex justify-between items-center mb-8">
-                  <div>
-                    <h4 className="text-xl font-semibold">Active Deployments</h4>
-                    <p className="text-sm text-zinc-500">Manage your live links</p>
-                  </div>
-                  <div className="h-8 w-24 bg-accent/20 border border-accent/30 rounded text-accent text-xs flex items-center justify-center font-medium">
-                    + New Version
-                  </div>
-                </div>
+            <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-4 shadow-2xl shadow-orange-500/5 overflow-hidden">
+              <div className="rounded-xl border border-neutral-800 bg-neutral-900 flex flex-col md:flex-row min-h-[400px]">
                 
-                {/* Deployment Items */}
-                {[
-                  { name: 'VP Engineering - Stripe', status: 'Live', views: 12 },
-                  { name: 'Advisory Board Profile', status: 'Live', views: 5 },
-                  { name: 'Startup Advisor - FinTech', status: 'Draft', views: 0 }
-                ].map((item, i) => (
-                  <div key={i} className="p-4 rounded-xl border border-zinc-800 bg-zinc-800/20 flex items-center justify-between">
+                {/* Sidebar mock */}
+                <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-neutral-800 p-4">
+                  <div className="h-8 w-24 bg-neutral-800 rounded mb-8"></div>
+                  <div className="space-y-2">
+                    <div className="h-8 bg-neutral-800/50 rounded flex items-center px-3 text-sm text-neutral-300 font-medium border border-neutral-700/50">
+                      Overview
+                    </div>
+                    <div className="h-8 rounded flex items-center px-3 text-sm text-neutral-500 font-medium">
+                      Deployments
+                    </div>
+                    <div className="h-8 rounded flex items-center px-3 text-sm text-neutral-500 font-medium">
+                      Analytics
+                    </div>
+                  </div>
+                </div>
+
+                {/* Main content mock */}
+                <div className="flex-1 p-6 md:p-8">
+                  <div className="flex justify-between items-center mb-8">
                     <div>
-                      <div className="font-medium">{item.name}</div>
-                      <div className="text-xs text-zinc-500 mt-1 flex items-center gap-3">
-                        <span className="flex items-center gap-1">
-                          <span className={`w-2 h-2 rounded-full ${item.status === 'Live' ? 'bg-green-500' : 'bg-zinc-600'}`}></span>
-                          {item.status}
-                        </span>
-                        <span>{item.views} views</span>
+                      <h3 className="text-xl font-bold mb-1">Your CVs</h3>
+                      <p className="text-sm text-neutral-500">Manage and track your active versions</p>
+                    </div>
+                    <div className="px-4 py-2 bg-orange-500 rounded-lg text-sm font-medium">New Version</div>
+                  </div>
+
+                  <div className="grid gap-4">
+                    {/* CV Row 1 */}
+                    <div className="p-4 rounded-xl border border-neutral-800 bg-neutral-950 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center">
+                          <FileText className="w-5 h-5 text-neutral-400" />
+                        </div>
+                        <div>
+                          <div className="font-medium flex items-center gap-2">
+                            Senior PM - FinTech
+                            <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs border border-emerald-500/20">Live</span>
+                          </div>
+                          <div className="text-sm text-neutral-500 mt-1 flex items-center gap-3">
+                            <span className="flex items-center gap-1"><Eye className="w-3 h-3" /> 142 views</span>
+                            <span>Updated 2d ago</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="p-2 rounded-lg hover:bg-neutral-800 text-neutral-400 cursor-pointer"><Globe className="w-4 h-4" /></div>
+                        <div className="p-2 rounded-lg hover:bg-neutral-800 text-neutral-400 cursor-pointer"><ChevronRight className="w-4 h-4" /></div>
                       </div>
                     </div>
-                    <div className="flex gap-2">
-                      <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center">
-                        <BarChart3 className="w-4 h-4 text-zinc-400" />
+
+                    {/* CV Row 2 */}
+                    <div className="p-4 rounded-xl border border-neutral-800 bg-neutral-950 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center">
+                          <Rocket className="w-5 h-5 text-neutral-400" />
+                        </div>
+                        <div>
+                          <div className="font-medium flex items-center gap-2">
+                            Startup Generalist
+                            <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs border border-emerald-500/20">Live</span>
+                          </div>
+                          <div className="text-sm text-neutral-500 mt-1 flex items-center gap-3">
+                            <span className="flex items-center gap-1"><Eye className="w-3 h-3" /> 89 views</span>
+                            <span>Updated 1w ago</span>
+                          </div>
+                        </div>
                       </div>
-                      <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center">
-                        <LinkIcon className="w-4 h-4 text-zinc-400" />
+                      <div className="flex items-center gap-2">
+                        <div className="p-2 rounded-lg hover:bg-neutral-800 text-neutral-400 cursor-pointer"><Globe className="w-4 h-4" /></div>
+                        <div className="p-2 rounded-lg hover:bg-neutral-800 text-neutral-400 cursor-pointer"><ChevronRight className="w-4 h-4" /></div>
                       </div>
                     </div>
                   </div>
-                ))}
+                </div>
+
               </div>
             </div>
-            
-            {/* Subtle overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent pointer-events-none"></div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Final CTA */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl pointer-events-none">
-          <div className="w-[600px] h-[600px] bg-accent/10 blur-[100px] rounded-full mx-auto mix-blend-screen"></div>
-        </div>
-        
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">
-            Build the version of yourself <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-orange-400">the world should see.</span>
-          </h2>
-          <a href="https://app.funkmybrand.com" className="inline-flex items-center px-8 py-4 rounded-full bg-white hover:bg-zinc-200 text-zinc-900 font-bold text-lg transition-all shadow-xl group">
-            Start building
-            <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </a>
-        </div>
-      </section>
+        {/* Final CTA */}
+        <section className="py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-t from-orange-500/10 to-transparent pointer-events-none" />
+          <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
+              Build the version of yourself the world should see.
+            </h2>
+            <a
+              href="https://app.funkmybrand.com"
+              className="inline-flex px-10 py-5 bg-orange-500 hover:bg-orange-600 text-white text-lg font-medium rounded-full transition-all items-center gap-2 hover:scale-105 active:scale-95 shadow-lg shadow-orange-500/25"
+            >
+              Start building
+              <ArrowRight className="w-5 h-5" />
+            </a>
+          </div>
+        </section>
+      </main>
 
-      {/* Footer */}
-      <footer className="py-8 border-t border-zinc-900 text-center text-zinc-600 text-sm">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center space-x-2">
-            <div className="w-5 h-5 rounded bg-zinc-800 flex items-center justify-center font-bold text-zinc-400 text-xs">
-              F
-            </div>
-            <span>© {new Date().getFullYear()} FunkMyBrand</span>
-          </div>
-          <div className="flex gap-6">
-            <a href="https://app.funkmybrand.com" className="hover:text-zinc-300 transition-colors">App</a>
-            <a href="#" className="hover:text-zinc-300 transition-colors">Privacy</a>
-            <a href="#" className="hover:text-zinc-300 transition-colors">Terms</a>
-          </div>
-        </div>
+      <footer className="py-8 border-t border-neutral-900 text-center text-neutral-500 text-sm">
+        <p>&copy; {new Date().getFullYear()} FunkMyBrand. All rights reserved.</p>
       </footer>
     </div>
   );
