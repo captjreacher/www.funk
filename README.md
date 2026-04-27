@@ -1,33 +1,16 @@
-# FunkMyBrand - Marketing Site
+# FunkMyBrand Marketing Site
 
-This is the standalone static marketing site for [FunkMyBrand.com](https://funkmybrand.com).
-
-## Tech Stack
-- React
-- Vite
-- Tailwind CSS v4
-- Lucide React (Icons)
+This is the static marketing site for [funkmybrand.com](https://funkmybrand.com), built with Vite, React, and Tailwind CSS.
 
 ## Development
 
 ```bash
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
 
 ## Deployment
 
-This is a static site. The build process creates a purely static bundle.
-
-```bash
-# Build the static site
-npm run build
-```
-
-The output will be generated in the `dist` folder. 
-A `CNAME` file is automatically copied to `dist` since it lives in the `public` directory, enabling custom domain support (`funkmybrand.com`) on GitHub Pages or similar static hosting providers.
-
-No backend services or auth (e.g. Supabase) are included in this repo.
+The site is configured for static hosting (e.g., GitHub Pages).
+Running `npm run build` will compile the site into the `dist` folder.
+The `public/CNAME` file ensures custom domain support for `funkmybrand.com`.
