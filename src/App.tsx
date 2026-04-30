@@ -1,5 +1,6 @@
 import { ArrowRight, BarChart3, Briefcase, ChevronRight, Copy, Eye, FileText, Globe, Lightbulb, Rocket, Users } from 'lucide-react';
 import React from 'react';
+import { config } from './config';
 
 function App() {
   const scrollToPreview = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -16,10 +17,10 @@ function App() {
             <div className="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center">
               <span className="font-bold text-white text-xl leading-none tracking-tighter">F</span>
             </div>
-            <span className="font-bold text-lg tracking-tight">FunkMyBrand</span>
+            <span className="font-bold text-lg tracking-tight">{config.siteName}</span>
           </div>
           <a
-            href="https://app.funkmybrand.com"
+            href={config.appUrl}
             className="text-sm font-medium hover:text-orange-400 transition-colors"
           >
             Sign in
@@ -43,7 +44,7 @@ function App() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="https://app.funkmybrand.com"
+                href={config.appUrl}
                 className="w-full sm:w-auto px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-full transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
               >
                 Start building
@@ -117,11 +118,11 @@ function App() {
 
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               {[
-                { icon: FileText, title: "Classic CV", desc: "The standard format" },
-                { icon: Rocket, title: "Operator", desc: "Execution focused" },
-                { icon: Lightbulb, title: "Strategist", desc: "Vision & planning" },
-                { icon: Briefcase, title: "Founder", desc: "Zero to one" },
-                { icon: Users, title: "Consultant", desc: "Client & advisory" }
+                { icon: FileText, title: 'Classic CV', desc: 'The standard format' },
+                { icon: Rocket, title: 'Operator', desc: 'Execution focused' },
+                { icon: Lightbulb, title: 'Strategist', desc: 'Vision & planning' },
+                { icon: Briefcase, title: 'Founder', desc: 'Zero to one' },
+                { icon: Users, title: 'Consultant', desc: 'Client & advisory' }
               ].map((archetype, i) => (
                 <div key={i} className="p-6 rounded-2xl border border-neutral-800 bg-neutral-950 hover:border-orange-500/50 hover:bg-neutral-900 transition-all cursor-default group">
                   <archetype.icon className="w-8 h-8 text-neutral-500 group-hover:text-orange-400 mb-4 transition-colors" />
@@ -220,6 +221,7 @@ function App() {
 
               </div>
             </div>
+
           </div>
         </section>
 
@@ -231,7 +233,7 @@ function App() {
               Build the version of yourself the world should see.
             </h2>
             <a
-              href="https://app.funkmybrand.com"
+              href={config.appUrl}
               className="inline-flex px-10 py-5 bg-orange-500 hover:bg-orange-600 text-white text-lg font-medium rounded-full transition-all items-center gap-2 hover:scale-105 active:scale-95 shadow-lg shadow-orange-500/25"
             >
               Start building
@@ -242,7 +244,7 @@ function App() {
       </main>
 
       <footer className="py-8 border-t border-neutral-900 text-center text-neutral-500 text-sm">
-        <p>&copy; {new Date().getFullYear()} FunkMyBrand. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} {config.siteName}. All rights reserved.</p>
       </footer>
     </div>
   );
