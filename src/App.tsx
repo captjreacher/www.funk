@@ -20,7 +20,7 @@ function App() {
             <span className="font-bold text-lg tracking-tight">{config.siteName}</span>
           </div>
           <a
-            href={config.appUrl}
+            href={config.ctaUrl.nav}
             className="text-sm font-medium hover:text-orange-400 transition-colors"
           >
             Sign in
@@ -44,7 +44,7 @@ function App() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href={config.appUrl}
+                href={config.ctaUrl.hero}
                 className="w-full sm:w-auto px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-full transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
               >
                 Start building
@@ -233,7 +233,7 @@ function App() {
               Build the version of yourself the world should see.
             </h2>
             <a
-              href={config.appUrl}
+              href={config.ctaUrl.finalCta}
               className="inline-flex px-10 py-5 bg-orange-500 hover:bg-orange-600 text-white text-lg font-medium rounded-full transition-all items-center gap-2 hover:scale-105 active:scale-95 shadow-lg shadow-orange-500/25"
             >
               Start building

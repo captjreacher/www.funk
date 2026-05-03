@@ -10,6 +10,13 @@ export const config = {
   /** Authenticated app */
   appUrl: 'https://app.funkmybrand.com',
 
+  /** UTM-tagged destinations for marketing-site CTAs (analytics attribution) */
+  ctaUrl: {
+    nav: 'https://app.funkmybrand.com/?utm_source=funkmybrand&utm_medium=marketing_site&utm_campaign=nav_signin',
+    hero: 'https://app.funkmybrand.com/?utm_source=funkmybrand&utm_medium=marketing_site&utm_campaign=hero_cta',
+    finalCta: 'https://app.funkmybrand.com/?utm_source=funkmybrand&utm_medium=marketing_site&utm_campaign=final_cta',
+  },
+
   /** SEO / social meta */
   siteName: 'FunkMyBrand',
   siteTitle: 'FunkMyBrand | Your career, versioned.',
