@@ -1,4 +1,4 @@
-import { ArrowRight, BarChart3, Briefcase, ChevronRight, Copy, Eye, FileText, Globe, Lightbulb, Rocket, Users } from 'lucide-react';
+import { ArrowRight, BarChart3, CheckCircle2, ChevronRight, Compass, Copy, Eye, FileText, Globe, RefreshCw, Rocket, Target, TrendingUp, Wrench } from 'lucide-react';
 import React from 'react';
 import { config } from './config';
 
@@ -112,22 +112,24 @@ function App() {
         <section className="py-24 md:py-32 bg-neutral-900/30 border-t border-neutral-900">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Choose how you want to present yourself</h2>
-              <p className="text-xl text-neutral-400">Start with a classic CV or choose a more expressive format</p>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Six ways to position yourself</h2>
+              <p className="text-xl text-neutral-400">Same career, different signal. Pick the version that fits the moment.</p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {[
-                { icon: FileText, title: 'Classic CV', desc: 'The standard format' },
-                { icon: Rocket, title: 'Operator', desc: 'Execution focused' },
-                { icon: Lightbulb, title: 'Strategist', desc: 'Vision & planning' },
-                { icon: Briefcase, title: 'Founder', desc: 'Zero to one' },
-                { icon: Users, title: 'Consultant', desc: 'Client & advisory' }
+                { icon: Compass, title: 'Strategic Leader', signal: 'Direction, alignment, outcomes', audience: 'Executives, boards, senior leaders' },
+                { icon: CheckCircle2, title: 'Operator', signal: 'Execution, reliability, delivery', audience: 'Hiring managers, ops, program delivery' },
+                { icon: Wrench, title: 'Builder', signal: 'Creation, systems, implementation', audience: 'Product teams, technical, early-stage' },
+                { icon: Target, title: 'Specialist', signal: 'Depth, expertise, precision', audience: 'Technical hiring, consulting, expert roles' },
+                { icon: TrendingUp, title: 'Commercial Driver', signal: 'Growth, revenue, outcomes', audience: 'Sales leadership, growth teams, founders' },
+                { icon: RefreshCw, title: 'Transformer', signal: 'Change, restructuring, evolution', audience: 'Transformation, consulting, turnarounds' }
               ].map((archetype, i) => (
                 <div key={i} className="p-6 rounded-2xl border border-neutral-800 bg-neutral-950 hover:border-orange-500/50 hover:bg-neutral-900 transition-all cursor-default group">
                   <archetype.icon className="w-8 h-8 text-neutral-500 group-hover:text-orange-400 mb-4 transition-colors" />
                   <h4 className="font-semibold text-lg mb-1">{archetype.title}</h4>
-                  <p className="text-sm text-neutral-500">{archetype.desc}</p>
+                  <p className="text-sm text-neutral-300 mb-2">{archetype.signal}</p>
+                  <p className="text-xs text-neutral-500">{archetype.audience}</p>
                 </div>
               ))}
             </div>
