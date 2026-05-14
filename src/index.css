@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply bg-background text-white antialiased;
+    @apply bg-[#0a0a0a] text-white antialiased;
   }
 }
