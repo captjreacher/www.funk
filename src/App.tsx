@@ -1,11 +1,23 @@
-import { ArrowRight, BarChart3, CheckCircle2, ChevronRight, Compass, Copy, Eye, FileText, Globe, RefreshCw, Rocket, Target, TrendingUp, Wrench } from 'lucide-react';
+import { ArrowRight, BarChart3, Briefcase, ChevronRight, Copy, Eye, FileText, Globe, Lightbulb, Rocket, Users } from 'lucide-react';
 import React from 'react';
 import { config } from './config';
+
+declare global {
+  interface Window {
+    plausible?: (event: string, options?: { props?: Record<string, any> }) => void;
+  }
+}
 
 function App() {
   const scrollToPreview = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     document.getElementById('preview')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const trackEvent = (eventName: string, props?: Record<string, any>) => {
+    if (window.plausible) {
+      window.plausible(eventName, { props });
+    }
   };
 
   return (
@@ -34,7 +46,7 @@ function App() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] opacity-20 pointer-events-none">
             <div className="absolute inset-0 bg-gradient-to-b from-orange-500/40 to-transparent blur-3xl rounded-full mix-blend-screen" />
           </div>
-          
+
           <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-white to-neutral-400 bg-clip-text text-transparent">
               Your career, versioned.
@@ -45,6 +57,7 @@ function App() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href={config.ctaUrl.hero}
+                onClick={() => trackEvent('cta_hero_click')}
                 className="w-full sm:w-auto px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-full transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
               >
                 Start building
@@ -52,7 +65,7 @@ function App() {
               </a>
               <a
                 href="#preview"
-                onClick={scrollToPreview}
+                onClick={(e) => { trackEvent('preview_button_click'); scrollToPreview(e); }}
                 className="w-full sm:w-auto px-8 py-4 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-neutral-700 text-white font-medium rounded-full transition-all flex items-center justify-center gap-2"
               >
                 View product preview
@@ -112,24 +125,26 @@ function App() {
         <section className="py-24 md:py-32 bg-neutral-900/30 border-t border-neutral-900">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Six ways to position yourself</h2>
-              <p className="text-xl text-neutral-400">Same career, different signal. Pick the version that fits the moment.</p>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Choose how you want to present yourself</h2>
+              <p className="text-xl text-neutral-400">Start with a classic CV or choose a more expressive format</p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               {[
-                { icon: Compass, title: 'Strategic Leader', signal: 'Direction, alignment, outcomes', audience: 'Executives, boards, senior leaders' },
-                { icon: CheckCircle2, title: 'Operator', signal: 'Execution, reliability, delivery', audience: 'Hiring managers, ops, program delivery' },
-                { icon: Wrench, title: 'Builder', signal: 'Creation, systems, implementation', audience: 'Product teams, technical, early-stage' },
-                { icon: Target, title: 'Specialist', signal: 'Depth, expertise, precision', audience: 'Technical hiring, consulting, expert roles' },
-                { icon: TrendingUp, title: 'Commercial Driver', signal: 'Growth, revenue, outcomes', audience: 'Sales leadership, growth teams, founders' },
-                { icon: RefreshCw, title: 'Transformer', signal: 'Change, restructuring, evolution', audience: 'Transformation, consulting, turnarounds' }
+                { icon: FileText, title: 'Classic CV', desc: 'The standard format' },
+                { icon: Rocket, title: 'Operator', desc: 'Execution focused' },
+                { icon: Lightbulb, title: 'Strategist', desc: 'Vision & planning' },
+                { icon: Briefcase, title: 'Founder', desc: 'Zero to one' },
+                { icon: Users, title: 'Consultant', desc: 'Client & advisory' }
               ].map((archetype, i) => (
-                <div key={i} className="p-6 rounded-2xl border border-neutral-800 bg-neutral-950 hover:border-orange-500/50 hover:bg-neutral-900 transition-all cursor-default group">
+                <div
+                  key={i}
+                  className="p-6 rounded-2xl border border-neutral-800 bg-neutral-950 hover:border-orange-500/50 hover:bg-neutral-900 transition-all cursor-default group"
+                  onMouseEnter={() => trackEvent('archetype_view', { archetype: archetype.title })}
+                >
                   <archetype.icon className="w-8 h-8 text-neutral-500 group-hover:text-orange-400 mb-4 transition-colors" />
                   <h4 className="font-semibold text-lg mb-1">{archetype.title}</h4>
-                  <p className="text-sm text-neutral-300 mb-2">{archetype.signal}</p>
-                  <p className="text-xs text-neutral-500">{archetype.audience}</p>
+                  <p className="text-sm text-neutral-500">{archetype.desc}</p>
                 </div>
               ))}
             </div>
@@ -142,10 +157,10 @@ function App() {
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">One workspace for your professional identity</h2>
             </div>
-            
+
             <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-4 shadow-2xl shadow-orange-500/5 overflow-hidden">
               <div className="rounded-xl border border-neutral-800 bg-neutral-900 flex flex-col md:flex-row min-h-[400px]">
-                
+
                 {/* Sidebar mock */}
                 <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-neutral-800 p-4">
                   <div className="h-8 w-24 bg-neutral-800 rounded mb-8"></div>
@@ -236,6 +251,7 @@ function App() {
             </h2>
             <a
               href={config.ctaUrl.finalCta}
+              onClick={() => trackEvent('cta_final_click')}
               className="inline-flex px-10 py-5 bg-orange-500 hover:bg-orange-600 text-white text-lg font-medium rounded-full transition-all items-center gap-2 hover:scale-105 active:scale-95 shadow-lg shadow-orange-500/25"
             >
               Start building
